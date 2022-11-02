@@ -1,6 +1,31 @@
-function myFunction() {
-  var element = document.getElementById("body");
-  element.classList.toggle("red");
+const body = document.getElementById("body");
+
+let testInterval;
+let speed = 0;
+
+function speedPlus() {
+  if (speed === 0) {
+    return speed++;
+  }
 }
 
-let myInterval = setInterval(myFunction, 300);
+function speedMinus() {
+  if (speed === 1) {
+    return speed--;
+  }
+}
+
+function color() {
+  body.classList.toggle("red");
+}
+
+body.addEventListener("click", function () {
+  console.log(speed);
+  if (speed === 0) {
+    speedPlus();
+    return (testInterval = setInterval(color, 300));
+  } else {
+    speedMinus();
+    return clearInterval(testInterval);
+  }
+});
